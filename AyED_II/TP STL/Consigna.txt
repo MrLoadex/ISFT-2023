@@ -1,0 +1,24 @@
+Ejercicio STL vector de C++
+Escribe un programa que defina un vector de enteros.
+Inserte dos elementos en un vector.
+Imprima el contenido vectorial utilizando el bucle basado en rangos.
+Borre el segundo elemento del vector.
+Imprima el contenido vectorial utilizando el bucle basado en rangos.
+Borre el rango de 3 elementos a partir del principio del vector.
+Imprima el contenido vectorial utilizando el bucle basado en rangos.
+Escriba un programa que busque un elemento vectorial utilizando la función de algoritmo std::find().
+Si se ha encontrado el elemento, elimínelo.
+Imprima el contenido vectorial.
+STL Vector & Iterator
+Utilizar el Ejemplo anterior e Implementar un Vector con un Iterador para mostrar su contenido.
+Implementar un Map en C++ 
+contenedor de mapa vacío
+insertar elementos en orden aleatorio
+imprimiendo mapa Map1
+asignando los elementos de Map1 a Map2
+imprimir todos los elementos del mapa Map2
+eliminar todos los elementos hasta
+elemento con clave=3 en Map2
+eliminar todos los elementos con clave = 4
+límite inferior y límite superior para el mapa Map1 clave = 5
+Implementar un unordermap que cuente la cantidad de repetición de  palabrasde la frase:
