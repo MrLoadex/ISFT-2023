@@ -1,9 +1,11 @@
 #include <iostream>
+#include <typeinfo>
 
 
 //1. Declarar una función que toma dos parámetros de plantilla distintos de los  cuales uno es el tipo de retorno y el otro es argumento.
 template <typename T1, typename T2>
 T1 return_a(T1& a, T2& b) {
+    a = b;
     return a;
 }
 
@@ -43,8 +45,8 @@ int main()
     //1.
     int a = 1;
     float b = 2.5;
-    float resultado_1 = return_a(a,b);
-    std::cout << "Punto 1, valor obtenido es: " << resultado_1 << std::endl;
+    auto resultado_1 = return_a(a,b);
+    std::cout << "Punto 1, valor obtenido es: " << resultado_1 << " y es de tipo " << typeid(resultado_1).name() << std::endl;
 
     //2.
     OnlyTemplateTaker<float> vomitador(b);
