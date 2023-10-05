@@ -1,0 +1,150 @@
+Marco Practico: Kata
+Principios SOLID: implementación
+Los principios de SOLID son ampliamente adoptados por los desarrolladores de software como un
+conjunto de pautas para diseñar código mantenible y extensible. Al seguir estos principios, los
+desarrolladores pueden crear software que sea más fácil de entender, modificar y probar
+Introducción
+Los principios de SOLID son un conjunto de directrices o mejores prácticas para la programación
+orientada a objetos que ayudan a crear software que es más fácil de mantener, flexible y escalable. El
+término "SOLID" es un acrónimo de cinco principios diferentes, cada uno de los cuales se centra en un
+aspecto diferente del desarrollo de software:
+S — Principio de responsabilidad única (SRP)
+O — Principio abierto-cerrado (OCP)
+L — Principio de sustitución de Liskov (LSP)
+I — Principio de segregación de interfaz (ISP)
+D — Principio de inversión de dependencias (DIP)
+Stage 01 – Kata SRP
+Página: 2Principio de responsabilidad única (SRP)
+El Principio de Responsabilidad Única (SRP) es uno de los cinco principios SOLID del diseño orientado a
+objetos. Establece que una clase debe tener una sola responsabilidad, lo que significa que debe tener
+una sola razón para cambiar. Este principio ayuda a reducir el acoplamiento entre clases y hace que el
+código sea más fácil de mantener y escalable.
+En C++, SRP se puede implementar dividiendo las responsabilidades de una clase en clases más
+pequeñas y enfocadas. Cada clase debe ser responsable de una sola tarea y no debe tener otra razón
+para cambiar. Esto hace que el código sea más fácil de entender, modificar y probar.
+Consideremos un ejemplo de una clase nombrada que es responsable de calcular la factura final
+de un cliente. En su forma actual, la clase tiene varias responsabilidades, como mantener los
+detalles del cliente, calcular la factura final y generar una factura.Customer
+class Customer {
+private:
+ string name;
+ int id;
+ vector<Item> items;
+ float totalAmount;
+public:
+ void setName(string name);
+ string getName();
+void setId(int id);
+ int getId();
+void addItem(Item item);
+ void removeItem(Item item);
+ float calculateTotalAmount();
+string generateInvoice();
+};
+Se solicita Aplicar SOLID SRP a la Clase. Como podemos ver, la clase esresponsable de múltiplestareas, como mantener los detalles del cliente, calcular la factura final y generar una factura. Esto viola el Principio de Responsabilidad Única, ya quelaclase tiene múltiplesrazones para cambiar. Por ejemplo,sise cambia el cálculo de la factura final, entoncesla clase debe modificarse, aunque no esté relacionada con los detalles del cliente o la
+generación de facturas.CustomerCustomer
+Para implementar SRP, podemos crear clasesseparadas para cada una de estasresponsabilidades.
+Página: 3Al dividir lasresponsabilidades de la clase en clases más pequeñas y enfocadas, cada clase tiene unasola responsabilidad, lo que hace que el código sea másfácil de mantener y escalable. Sise requierealgún cambio en cualquiera de estas clases,solo se debe modificar esa clase, en lugar de toda la clase. Esto conduce a un código máslimpio y fácil de mantener, que es másfácil de entender, modificar y
+probar. Stage 02 – Kata OCP
+Principio de apertura-cerrado (OCP)
+El principio abierto-cerrado (OCP) es uno de los cinco principios SOLID del diseño orientadoa objetos. Establece que una clase debe estar abierta para la extensión pero cerrada para la modificación. Esteprincipio ayuda a hacer que el código sea más fácil de mantener y flexible. En C++, OCP se puede implementar creando clases que se pueden ampliar agregando nuevas
+funcionalidades sin modificar el código existente. Esto se logra mediante el uso de herencia, polimorfismo e interfaces. Siguiendo este principio, podemos hacer que el código sea más modular ymenos propenso a errores. Consideremos un ejemplo de una jerarquía de clases que incluye diferentes tipos de formas, como, ,yCada forma tiene un método de cálculo de área diferente. Shape Rectangle Circle Triangle
+class Shape {
+public:
+ virtual double area() = 0;
+};
+class Rectangle : public Shape {
+private:
+ double width;
+double height;
+public:
+ Rectangle(double width, double height);
+ double area() override;
+};
+class Circle : public Shape {
+private:
+ double radius;
+public:
+ Circle(double radius);
+Página: 4 double area() override;
+};
+class Triangle : public Shape {
+private:
+ double base;
+double height;
+public:
+ Triangle(double base, double height);
+ double area() override;
+};
+class Triangle : public Shape {
+private:
+ double base;
+double height;
+public:
+ Triangle(double base, double height);
+ double area() override;
+};
+Ahora, supongamos que queremos agregar un nuevo método Draw, realizar cumpliendo OCPStage 03 – Kata LSP
+Principio de sustitución de Liskov (LSP)
+El Principio de Sustitución de Liskov (LSP) es uno de los principios SOLID del diseño orientadoaobjetos. Establece que los objetos de una superclase deben poder ser reemplazados por objetos de unasubclasesin afectar la corrección del programa. En otras palabras, una subclase debe poder ser sustituidaporsuclase padre sin causar ningún error o comportamiento inesperado. En C++, LSP se puede implementar asegurándose de que las subclases se adhieran a la misma interfazycomportamiento que su clase padre. Esto nos permite usar un objeto de subclase dondequieraquenormalmente usemos un objeto de clase padre.
+Página: 5Consideremos un ejemplo de una jerarquía de clases que incluye diferentes tipos de aves, como, , y. Cada ave tiene una habilidad diferente para volar.BirdEaglePenguinOstrich
+class Bird {
+public:
+ virtual void fly() = 0;
+};
+class Eagle : public Bird {
+public:
+ void fly() override;
+};
+class Penguin : public Bird {
+public:
+ void fly() override;
+};
+class Ostrich : public Bird {
+public:
+ void fly() override;
+};
+Ahora, supongamos que tenemos una función que toma un objeto y lo hace volar.Bird
+void makeBirdFly(Bird& bird) {
+bird.fly();
+}
+Según el LSP, deberíamos poder pasar cualquier objeto de subclase a esta función sin afectar lacorrección del programa. Por ejemplo, deberíamos poder pasar un objeto, un objeto o un objetoaestafunción.BirdEaglePenguinOstrich
+Eagle eagle;
+Penguin penguin;
+Ostrich ostrich;
+Página: 6makeBirdFly(eagle);// okay, eagle can fly
+makeBirdFly(penguin);// error, penguin can't fly
+makeBirdFly(ostrich);// error, ostrich can't fly
+Como podemos ver, pasar un u objeto a esta función resultaría en un error porque no puedenvolar. Porlo tanto, estas clases no se adhieren al mismo comportamiento que su clase principal, y violanel
+LSP.PenguinOstrichBird
+Siguiendo el principio de sustitución de Liskov, podemos crear código que sea más modular y flexible. Esto nos permite usar subclases indistintamente con su clase padre, lo que reduce la complejidaddenuestro código y facilita su mantenimiento. Stage 04 – Kata ISP
+Principio de segregación de interfaz (ISP)
+El principio de segregación de interfaz (ISP) es uno de los principios SOLID del diseño orientadoaobjetos. Establece que un cliente no debe verse obligado a depender de interfaces que no utiliza. Enotras palabras, una clase no debería tener que implementar métodos que no necesita. En C++, ISP se puede implementar dividiendo interfaces más grandes en interfaces más pequeñas yespecíficas. Esto permite a los clientes depender solo de los métodos específicos que necesitan, enlugarde verse obligados a implementar métodos innecesarios. Consideremos un ejemplo de una clase que puede imprimir documentos en diferentes formatos, comoPDF, HTML y texto sin formato. Podríamos definir una única interfaz para esta clase que incluyatodoslosmétodos posibles, como , , y .PrinterprintPDF()printHTML()printPlainText()
+class Printer {
+Página: 7public:
+ virtual void printPDF() = 0;
+ virtual void printHTML() = 0;
+ virtual void printPlainText() = 0;
+};
+Sin embargo, esta interfaz puede no ser adecuada para todos los clientes. Por ejemplo, es posiblequeuncliente que sólo necesita imprimir documentos de texto sin formato no desee implementar los métodosand.printPDF()printHTML()
+Para adherirnos al ISP, podríamos dividir la interfaz en interfaces más pequeñas que son específicasparacada formato de documento.Printer
+Stage 05 – Kata DIP
+Principio de inversión de dependencias (DIP)
+El principio de inversión de dependencias (DIP) es uno de los principios SOLID del diseño orientadoaobjetos. Establece que los módulos de alto nivel no deben depender de módulos de bajo nivel. Ambosdeben depender de abstracciones. Las abstracciones no deben depender de los detalles. Los detallesdeben depender de las abstracciones. En C++, DIP se puede implementar mediante interfaces o clases abstractas para desacoplar módulosdealto nivel de módulos de bajo nivel. Esto permite una mayor flexibilidad en el diseño, ya que diferentesimplementaciones de la misma interfaz se pueden intercambiar fácilmente sin afectar la estructurageneral del programa. Consideremos un ejemplo de una clase que almacena información del usuario. Podríamos definir unaimplementación concreta de esta clase que depende de la clase.DatabaseMySQLConnector
+Página: 8class MySQLConnector {
+public:
+ void connect();
+void query(const std::string& query);
+};
+class Database {
+public:
+ void addUser(const std::string& name, const std::string& email) {
+ MySQLConnector connector;
+ connector.connect();
+std::string query = "INSERT INTO users (name, email) VALUES ('" + name + "', '"+email + "')";
+ connector.query(query);
+ }
+};
+Esta implementación infringe el principio de inversión de dependencias, ya que la clase dependedelaclase de bajo nivel. Si tuviéramos que cambiar a un sistema de base de datos diferente, tendríamosquemodificar la clase para usar un conector diferente.DatabaseMySQLConnectorDatabase
+Para adherirnos al DIP, podríamos definir una interfaz abstracta para el conector de base de datos yhacerque la clase dependa de esta interfaz en lugar de una implementación concreta.Database
+. Lic. Oemig José Luis.
