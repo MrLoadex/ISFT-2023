@@ -14,3 +14,8 @@ void Order::showItems() const {
         std::cout << "  - " << item->getName() << " (ID: " << item->getId() << ", Price: $" << item->getPrice() << ")\n";
     }
 }
+
+void Order::setCustomer(std::shared_ptr<ICustomer> _customer)
+{
+    customer = _customer;
+}

@@ -10,18 +10,30 @@
 
 using namespace std;
 
-class OrderBuilder {
+class IOrderBuilder
+{
+public:
+        //crear de un cliente
+    virtual void buildCustomer() = 0;
+    //crear un vector de items
+    virtual void buildItems() = 0;
+    //devolver el pedido
+    virtual shared_ptr<IOrder> getOrder() = 0;
+};
+
+
+
+class OrderBuilder : public IOrderBuilder{
 private:
     shared_ptr<IOrder> order;
-    shared_ptr<ICustomer> customer;
     auto buildItem();//crear de un item
 public:
     //crear de un cliente
-    void buildCustomer();
+    void buildCustomer() override;
     //crear un vector de items
-    void buildItemsList();
+    void buildItems() override;
     //devolver el pedido
-    auto getOrder();
+    shared_ptr<IOrder> getOrder() override;
 };
 
 #endif

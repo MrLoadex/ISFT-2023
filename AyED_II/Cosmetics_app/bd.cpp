@@ -8,21 +8,19 @@
 
 using namespace std;
 
-
-
 int main() {
-    shared_ptr<OrderBuilder> builder;
+    auto orderBuilder = make_shared<OrderBuilder>();
 
     cout<< "Bienvenido al carrito de cosmeticos" << endl;
     
     // Crear el cliente
-    builder->buildCustomer();
+    orderBuilder->buildCustomer();
 
     // Crear elementos y llenar el vector de elementos
-    builder->buildItemsList();
+    orderBuilder->buildItems();
 
     // Crear la orden
-    auto order = builder->getOrder();
+    auto order = orderBuilder->getOrder();
 
     // Mostrar la orden
     order->showItems();

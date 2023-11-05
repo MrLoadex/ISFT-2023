@@ -8,6 +8,7 @@
 
 class IOrder {
 public:
+    virtual void setCustomer(shared_ptr<ICustomer> customer) = 0;
     virtual void addItem(std::shared_ptr<IItem> _item) = 0;
     virtual void showItems() const = 0;
 };
@@ -19,6 +20,7 @@ private:
 
 public:
     Order(std::shared_ptr<ICustomer> _customer);
+    void setCustomer(std::shared_ptr<ICustomer> _customer) override;
     void addItem(std::shared_ptr<IItem> _item) override;
     void showItems() const override;
 };

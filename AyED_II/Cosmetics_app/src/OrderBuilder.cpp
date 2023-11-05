@@ -1,7 +1,30 @@
 #include "OrderBuilder.h"
+
+//crear de un item
+auto OrderBuilder::buildItem()
+{
+    int id;
+    string itemName;
+    double price;
+    cout << "Bienvenido a la creacion del articulo!" << endl;
+    cout << "ID del articulo: ";
+    cin >> id;
+
+    cout << "Nombre del articulo: ";
+    cin >> itemName;
+
+    cout << "Precio del precio: ";
+    cin >> price;
+
+    auto item= make_shared<Item>(id, itemName, price);
+    return item;
+}
+
+
 //crear de un cliente
 void OrderBuilder::buildCustomer()
 {
+    shared_ptr<ICustomer> customer;
     int id;
     string name;
     cout << "Bienvenido a la creacion del cliente" << endl;
@@ -12,30 +35,11 @@ void OrderBuilder::buildCustomer()
     cin >> name;
 
     customer = make_shared<Customer>(id, name);
-}
-
-//crear de un item
-auto OrderBuilder::buildItem()
-{
-    int id;
-    string name;
-    double price;
-    cout << "Bienvenido a la creacion del articulo!" << endl;
-    cout << "ID del articulo: ";
-    cin >> id;
-
-    cout << "Nombre del articulo: ";
-    cin >> name;
-
-    cout << "Precio del precio: ";
-    cin >> price;
-
-    auto item= make_shared<Item>(id, name, price);
-    return item;
+    order->setCustomer(customer);
 }
 
 //crear un vector de items
-void OrderBuilder::buildItemsList()
+void OrderBuilder::buildItems()
 {
     short int option = 1;    
     //llenar la lista de items
@@ -54,7 +58,7 @@ void OrderBuilder::buildItemsList()
 }
 
 //crear una orden
-auto OrderBuilder::getOrder()
+shared_ptr<IOrder> OrderBuilder::getOrder()
 {
     return order;
 }
