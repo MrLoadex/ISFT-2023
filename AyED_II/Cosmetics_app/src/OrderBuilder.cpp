@@ -1,5 +1,10 @@
 #include "OrderBuilder.h"
 
+OrderBuilder::OrderBuilder()
+{
+    order = make_shared<Order>();
+}
+
 //crear de un item
 auto OrderBuilder::buildItem()
 {
@@ -11,7 +16,8 @@ auto OrderBuilder::buildItem()
     cin >> id;
 
     cout << "Nombre del articulo: ";
-    cin >> itemName;
+    cin.ignore();
+    getline(cin, itemName);
 
     cout << "Precio del precio: ";
     cin >> price;
@@ -19,7 +25,6 @@ auto OrderBuilder::buildItem()
     auto item= make_shared<Item>(id, itemName, price);
     return item;
 }
-
 
 //crear de un cliente
 void OrderBuilder::buildCustomer()
@@ -32,9 +37,11 @@ void OrderBuilder::buildCustomer()
     cin >> id;
 
     cout << "Nombre del cliente: ";
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
 
     customer = make_shared<Customer>(id, name);
+
     order->setCustomer(customer);
 }
 

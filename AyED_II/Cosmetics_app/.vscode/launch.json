@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/LorDex/Desktop/SISTEMAS/2023/AyED_II/Parcial 2/Cosmetics_app",
-      "program": "c:/Users/LorDex/Desktop/SISTEMAS/2023/AyED_II/Parcial 2/Cosmetics_app/build/Debug/outDebug",
+      "cwd": "c:/Users/LorDex/Desktop/SISTEMAS/Sistemas-2023/AyED_II/Cosmetics_app",
+      "program": "c:/Users/LorDex/Desktop/SISTEMAS/Sistemas-2023/AyED_II/Cosmetics_app/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

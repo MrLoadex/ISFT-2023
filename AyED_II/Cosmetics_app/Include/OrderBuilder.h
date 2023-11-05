@@ -21,13 +21,12 @@ public:
     virtual shared_ptr<IOrder> getOrder() = 0;
 };
 
-
-
 class OrderBuilder : public IOrderBuilder{
 private:
     shared_ptr<IOrder> order;
     auto buildItem();//crear de un item
 public:
+    OrderBuilder();
     //crear de un cliente
     void buildCustomer() override;
     //crear un vector de items

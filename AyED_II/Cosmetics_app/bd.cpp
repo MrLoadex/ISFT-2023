@@ -16,13 +16,13 @@ int main() {
     // Crear el cliente
     orderBuilder->buildCustomer();
 
-    // Crear elementos y llenar el vector de elementos
+    // Crear articulos
     orderBuilder->buildItems();
 
-    // Crear la orden
+    // Obtener el pedido
     auto order = orderBuilder->getOrder();
 
-    // Mostrar la orden
+    // Mostrar el pedido
     order->showItems();
 
     return 0;
